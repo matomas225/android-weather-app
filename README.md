@@ -2,12 +2,12 @@
 
 I made this app for fun.
 
-Stack
+Stack:
 Termux (linux emulator for android)
 Acode (IDE for android)
 Vite + React
 
-Packages
+Packages:
 axios (for fetching)
 moment (for farmating date)
 
