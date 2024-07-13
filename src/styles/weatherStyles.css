@@ -1,0 +1,35 @@
+.weather-wrap {
+  margin: 0px 32px;
+  padding: 10px;
+  background-color: #3f3f3f;
+  border-radius: 6px;
+  div {
+    p {
+      text-align: center;
+      background-color: #3f3f3f;
+      font-size: 18px;
+      padding: 5px;
+      img {
+        background-color: #87e6f8;
+        border-radius: 10px;
+        padding: 6px;
+        margin-right: 10px;
+        height: 24px;
+      }
+    }
+  }
+
+}
+
+.weather-elements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: #3f3f3f;
+  p {
+    display: flex;
+    align-items: center;
+    flex: 45%;
+    gap: 5px;
+  }
+}

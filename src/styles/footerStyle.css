@@ -1,0 +1,20 @@
+.footer-wrapper{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  height: 5rem;
+  
+  
+  div{
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+    p{
+      text-align: center;
+      background-color: black;
+      
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.head {
+  padding: 32px;
+  h1 {
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    margin: 20px;
+  }
+}
