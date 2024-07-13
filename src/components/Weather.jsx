@@ -68,27 +68,27 @@ const Weather = () => {
         </p>
         <div className="weather-elements">
           <p>
-            <img src="/temp.png" />
+            <img src="./temp.png" />
           {Math.round(weather.data.values.temperature)}°C
         </p>
         <p>
-          <img src="/cloudy.png" />
+          <img src="./cloudy.png" />
         {weather.data.values.cloudCover}%
       </p>
       <p>
-        <img src="/humidity.png" />
+        <img src="./humidity.png" />
       {weather.data.values.humidity}%
     </p>
     <p>
-      <img src="/rainy.png" />
+      <img src="./rainy.png" />
     {weather.data.values.rainIntensity}mm/h
   </p>
   <p>
-    <img src="/wind.png" />
+    <img src="./wind.png" />
   {weather.data.values.windSpeed}m/s
 </p>
 <p>
-  <img src="/sunny.png" />
+  <img src="./sunny.png" />
 {weather.data.values.uvIndex} uv
 </p>
 </div>
