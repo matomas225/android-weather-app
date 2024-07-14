@@ -33,3 +33,25 @@
     gap: 5px;
   }
 }
+
+.text-flag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3f3f3f;
+}
+
+.select-country {
+  background-color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 32px;
+  p {
+    display: flex;
+  }
+  div {
+    color: white;
+    background-color: #3f3f3f;
+  }
+}

@@ -2,10 +2,15 @@ import React from "react"
 import "../styles/weatherStyles.css"
 import {
   useEffect,
-  useState
+  useState,
+  useMemo,
 } from "react"
 import axios from "axios";
 import moment from "moment";
+import visitorApi from "visitorapi";
+import ReactCountryFlag from "react-country-flag";
+import Select from "react-select";
+import countryList from "react-select-country-list";
 
 const weatherss = {
   "data": {
@@ -41,31 +46,61 @@ const weatherss = {
   }
 };
 
-
-
 const Weather = () => {
   const [weather,
     setWeather] = useState();
+
+  const [location,
+    setLocation] = useState();
+
+  const [error,
+    setError] = useState();
+
+  const [hasChanged,
+    setHasChanged] = useState(false);
+
+  const options = useMemo(() => countryList().getData(), []);
+
   const key = import.meta.env.VITE_WEATHER_API_KEY
 
-  const apiLink = "https://api.tomorrow.io/v4/weather/realtime?location=lithuania&units=metric&apikey="
+  const fetchWeather = () => axios.get(`https://api.tomorrow.io/v4/weather/realtime?location=${location?.locationName}&units=metric&apikey=${key}`).then(response => setWeather(response.data)
+  ).catch(error => setError(error));
 
-  const fetchWeather = () => axios.get(`${apiLink}${key}`).then(response => setWeather(response.data)).catch(error => setWeather(error));
+  const fetchLocation = () => visitorApi("QYfSECB0vp4hXVV3fo61").then(data => setLocation({
+    locationName: data.countryName,
+    locationCode: data.countryCode,
+  })).then(() => fetchWeather()).catch(error => setError(error));
 
   useEffect(() => {
-    fetchWeather();
+    fetchLocation();
   }, []);
+  
+  useEffect(() => {
+    fetchWeather();
+    setHasChanged(false);
+  }, [hasChanged === true])
+
+
 
 
   return (
     <section className="weather-wrap">
-      {weather && <div>
+      {location && weather ? <div>
         <p>
           {moment(weather.data.time).format('MMMM Do YYYY, h:mm a')}
         </p>
-        <p>
-          {weather.location.name} 🇱🇹
-        </p>
+        <div className="text-flag">
+          <p>
+            {location.locationName}
+          </p>
+          <ReactCountryFlag
+            countryCode={location.locationCode}
+            svg
+            style={ {
+              background: "none",
+            }} />
+        </div>
+
         <div className="weather-elements">
           <p>
             <img src="./temp.png" />
@@ -92,6 +127,26 @@ const Weather = () => {
 {weather.data.values.uvIndex} uv
 </p>
 </div>
+<div className="select-country">
+<p>
+Select Country
+</p>
+<Select
+options={options}
+value={location.locationName}
+onChange={val => {
+setLocation({
+locationName: val.label,
+locationCode: val.value
+});
+setHasChanged(true);
+}} />
+</div>
+</div>: <div>
+<p>
+Can't show weather at the moment.
+{JSON.stringify(error)}
+</p>
 </div>
 }
 </section>
