@@ -66,7 +66,7 @@ const Weather = () => {
   const fetchWeather = () => axios.get(`https://api.tomorrow.io/v4/weather/realtime?location=${location?.locationName}&units=metric&apikey=${key}`).then(response => setWeather(response.data)
   ).catch(error => setError(error));
 
-  const fetchLocation = () => visitorApi("QYfSECB0vp4hXVV3fo61").then(data => setLocation({
+  const fetchLocation = () => visitorApi("VBWXPIexvNJXGW1UPPh7").then(data => setLocation({
     locationName: data.countryName,
     locationCode: data.countryCode,
   })).then(() => fetchWeather()).catch(error => setError(error));
